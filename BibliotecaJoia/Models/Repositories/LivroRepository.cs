@@ -11,7 +11,10 @@ namespace BibliotecaJoia.Models.Repositories
     {
         public List<LivroDto> Listar()
         {
-            throw new NotImplementedException();
+            var livros = ContextDataFake.Livros;
+            return livros
+                    .OrderBy(p => p.Nome)
+                    .ToList();
         }
     }
 }

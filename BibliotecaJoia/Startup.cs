@@ -1,3 +1,7 @@
+using BibliotecaJoia.Models.Contracts.Repositories;
+using BibliotecaJoia.Models.Contracts.Services;
+using BibliotecaJoia.Models.Repositories;
+using BibliotecaJoia.Models.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +28,9 @@ namespace BibliotecaJoia
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddScoped<ILivroRepository, LivroRepository>();
+            services.AddScoped<ILivroService, LivroService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
