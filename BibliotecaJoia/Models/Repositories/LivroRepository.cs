@@ -9,6 +9,11 @@ namespace BibliotecaJoia.Models.Repositories
 {
     public class LivroRepository : ILivroRepository
     {
+        public void Cadastrar(LivroDto livro)
+        {
+            ContextDataFake.Livros.Add(livro);
+        }
+
         public List<LivroDto> Listar()
         {
             var livros = ContextDataFake.Livros;

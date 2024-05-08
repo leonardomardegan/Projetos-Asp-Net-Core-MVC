@@ -1,4 +1,5 @@
 ﻿using BibliotecaJoia.Models.Contracts.Services;
+using BibliotecaJoia.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,26 @@ namespace BibliotecaJoia.Controllers
                 return View(livros);
             }
             catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create([Bind("Nome, Autor, Editora")] LivroDto livro)
+        {
+            try
+            {
+                _livroService.Cadastrar(livro);
+                return RedirectToAction("List");
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
