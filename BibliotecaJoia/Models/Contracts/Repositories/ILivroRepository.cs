@@ -11,5 +11,9 @@ namespace BibliotecaJoia.Models.Contracts.Repositories
         void Cadastrar(LivroDto livro);
 
         List<LivroDto> Listar();
+
+        LivroDto PesquisarPorId(string id);
+
+        void Atualizar(LivroDto livro);
     }
 }

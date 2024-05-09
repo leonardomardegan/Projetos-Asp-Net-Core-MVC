@@ -17,6 +17,18 @@ namespace BibliotecaJoia.Models.Services
             _livroRepository = livroRepository;
         }
 
+        public void Atualizar(LivroDto livro)
+        {
+            try
+            {
+                _livroRepository.Atualizar(livro);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void Cadastrar(LivroDto livro)
         {
             try
@@ -36,6 +48,18 @@ namespace BibliotecaJoia.Models.Services
                 return _livroRepository.Listar();
             }
             catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public LivroDto PesquisarPorId(string id)
+        {
+            try
+            {
+                return _livroRepository.PesquisarPorId(id);
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
