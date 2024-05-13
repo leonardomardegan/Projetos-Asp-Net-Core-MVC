@@ -15,5 +15,6 @@ namespace BibliotecaJoia.Models.Contracts.Repositories
         LivroDto PesquisarPorId(string id);
 
         void Atualizar(LivroDto livro);
+        void Excluir(string id);
     }
 }
