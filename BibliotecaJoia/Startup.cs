@@ -1,3 +1,4 @@
+using BibliotecaJoia.Models.Contracts.Contexts;
 using BibliotecaJoia.Models.Contracts.Repositories;
 using BibliotecaJoia.Models.Contracts.Services;
 using BibliotecaJoia.Models.Repositories;
@@ -28,6 +29,8 @@ namespace BibliotecaJoia
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddSingleton<IContextData, ContextDataFake>();
 
             services.AddScoped<ILivroRepository, LivroRepository>();
             services.AddScoped<ILivroService, LivroService>();
