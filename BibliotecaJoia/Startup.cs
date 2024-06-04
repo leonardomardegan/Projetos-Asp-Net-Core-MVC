@@ -31,6 +31,7 @@ namespace BibliotecaJoia
             services.AddControllersWithViews();
 
             services.AddSingleton<IContextData, ContextDataFake>();
+            services.AddSingleton<IConnectionManager, ConnectionManager>();
 
             services.AddScoped<ILivroRepository, LivroRepository>();
             services.AddScoped<ILivroService, LivroService>();
