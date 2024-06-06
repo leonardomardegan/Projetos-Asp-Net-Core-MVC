@@ -30,11 +30,26 @@ namespace BibliotecaJoia
         {
             services.AddControllersWithViews();
 
-            services.AddSingleton<IContextData, ContextDataFake>();
-            services.AddSingleton<IConnectionManager, ConnectionManager>();
-
             services.AddScoped<ILivroRepository, LivroRepository>();
             services.AddScoped<ILivroService, LivroService>();
+
+            ConfigureDatasource(services);
+        }
+
+        public void ConfigureDatasource(IServiceCollection services)
+        {
+            var datasource = Configuration["DataSource"];
+            switch (datasource)
+            {
+                case "Local":
+                    services.AddSingleton<IContextData, ContextDataFake>();
+                    break;
+
+                case "SqlServer":
+                    services.AddSingleton<IContextData, ContextDataSqlServer>();
+                    services.AddSingleton<IConnectionManager, ConnectionManager>();
+                    break;
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
