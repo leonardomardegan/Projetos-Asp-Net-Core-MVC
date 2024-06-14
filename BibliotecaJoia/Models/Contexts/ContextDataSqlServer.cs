@@ -61,6 +61,7 @@ namespace BibliotecaJoia.Models.Contexts
                 command.Parameters.Add("@nome", SqlDbType.VarChar).Value = livro.Nome;
                 command.Parameters.Add("@autor", SqlDbType.VarChar).Value = livro.Autor;
                 command.Parameters.Add("@editora", SqlDbType.VarChar).Value = livro.Editora;
+                command.Parameters.Add("@statusLivroId", SqlDbType.Int).Value = livro.StatusLivroId;
 
                 command.ExecuteNonQuery();
             }

@@ -11,6 +11,7 @@ namespace BibliotecaJoia.Models.Dtos
         public string Nome { get; set; }
         public string Autor { get; set; }
         public string Editora { get; set; }
+        public int StatusLivroId { get; set; }
 
         public LivroDto()
         {
