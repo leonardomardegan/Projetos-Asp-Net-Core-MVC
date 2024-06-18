@@ -89,19 +89,19 @@ namespace BibliotecaJoia.Models.Contexts
 
         private void InitializeData()
         {
-            var livro = new LivroDto("Implementando Domain-Driven Design", "Vaugh Vernon", "Alta Books");
+            var livro = new LivroDto { Nome = "Implementando Domain-Driven Design", Autor = "Vaugh Vernon", Editora = "Alta Books" };
             livros.Add(livro);
 
-            livro = new LivroDto("Domain-Driven Design", "Eric Evans", "Alta Books");
+            livro = new LivroDto { Nome = "Domain-Driven Design", Autor = "Eric Evans", Editora = "Alta Books" };
             livros.Add(livro);
 
-            livro = new LivroDto("Redes Guia Prático", "Carlos E. Morimoto", "ASul Editores");
+            livro = new LivroDto { Nome = "Redes Guia Prático", Autor = "Carlos E. Morimoto", Editora = "ASul Editores" };
             livros.Add(livro);
 
-            livro = new LivroDto("PHP Programando com Orientalção a Objetos", "Pablo Dall'Oglio", "Novatec");
+            livro = new LivroDto { Nome = "PHP Programando com Orientalção a Objetos", Autor = "Pablo Dall'Oglio", Editora = "Novatec" };
             livros.Add(livro);
 
-            livro = new LivroDto("Introdução a Programação com Python", "Nilo N. C. Menezes", "Novatec");
+            livro = new LivroDto { Nome = "Introdução a Programação com Python", Autor = "Nilo N. C. Menezes", Editora = "Novatec" };
             livros.Add(livro);
         }
     }

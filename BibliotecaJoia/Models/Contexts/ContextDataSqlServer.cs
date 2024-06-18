@@ -1,6 +1,7 @@
 ﻿using BibliotecaJoia.Models.Contracts.Contexts;
 using BibliotecaJoia.Models.Contracts.Repositories;
 using BibliotecaJoia.Models.Dtos;
+using BibliotecaJoia.Models.Entidades;
 using BibliotecaJoia.Models.Enums;
 using BibliotecaJoia.Models.Repositories;
 using System;
@@ -48,7 +49,7 @@ namespace BibliotecaJoia.Models.Contexts
             }
         }
 
-        public void CadastrarLivro(LivroDto livro)
+        public void CadastrarLivro(Livro livro)
         {
             try
             {
@@ -123,7 +124,7 @@ namespace BibliotecaJoia.Models.Contexts
                     var autor = colunas[2].ToString();
                     var editora = colunas[3].ToString();
 
-                    var livro = new LivroDto(id, nome, autor, editora);
+                    var livro = new LivroDto { Id = id, Nome = nome, Autor = autor, Editora = editora };
                     livros.Add(livro);
                 }
                 adapter = null;
@@ -163,7 +164,7 @@ namespace BibliotecaJoia.Models.Contexts
                     var autor = colunas[2].ToString();
                     var editora = colunas[3].ToString();
 
-                    livro = new LivroDto(codigo, nome, autor, editora);
+                    livro = new LivroDto { Id = codigo, Nome = nome, Autor = autor, Editora = editora };
                 }
                 adapter = null;
                 dataset = null;
