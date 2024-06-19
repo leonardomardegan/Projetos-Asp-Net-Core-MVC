@@ -15,6 +15,12 @@ namespace BibliotecaJoia.Models.Entidades
         public string Fone { get; set; }
         public int StatusClienteId { get; set; }
         public StatusCliente StatusCliente { get; set; }
+
+        public void Cadastrar()
+        {
+            this.StatusCliente = StatusCliente.ATIVO;
+            this.StatusClienteId = StatusCliente.GetHashCode();
+        }
         
         public ClienteDto ConverterParaDto()
         {
