@@ -22,6 +22,33 @@ namespace BibliotecaJoia.Models.Contexts
             _connection = connectionManager.GetConnection();
         }
 
+        public void AtualizarCliente(Cliente cliente)
+        {
+            try
+            {
+                _connection.Open();
+                var query = SqlManager.GetSql(TSql.ATUALIZAR_CLIENTE);
+
+                var command = new SqlCommand(query, _connection);
+
+                command.Parameters.Add("@id", SqlDbType.VarChar).Value = cliente.Id;
+                command.Parameters.Add("@nome", SqlDbType.VarChar).Value = cliente.Nome;
+                command.Parameters.Add("@email", SqlDbType.VarChar).Value = cliente.Email;
+                command.Parameters.Add("@fone", SqlDbType.VarChar).Value = cliente.Fone;
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (_connection.State == ConnectionState.Open)
+                    _connection.Close();
+            }
+        }
+
         public void AtualizarLivro(Livro livro)
         {
             try
@@ -35,6 +62,35 @@ namespace BibliotecaJoia.Models.Contexts
                 command.Parameters.Add("@nome", SqlDbType.VarChar).Value = livro.Nome;
                 command.Parameters.Add("@autor", SqlDbType.VarChar).Value = livro.Autor;
                 command.Parameters.Add("@editora", SqlDbType.VarChar).Value = livro.Editora;
+
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (_connection.State == ConnectionState.Open)
+                    _connection.Close();
+            }
+        }
+
+        public void CadastrarCliente(Cliente cliente)
+        {
+            try
+            {
+                _connection.Open();
+                var query = SqlManager.GetSql(TSql.CADASTRAR_CLIENTE);
+
+                var command = new SqlCommand(query, _connection);
+
+                command.Parameters.Add("@id", SqlDbType.VarChar).Value = cliente.Id;
+                command.Parameters.Add("@nome", SqlDbType.VarChar).Value = cliente.Nome;
+                command.Parameters.Add("@email", SqlDbType.VarChar).Value = cliente.Email;
+                command.Parameters.Add("@fone", SqlDbType.VarChar).Value = cliente.Fone;
+                command.Parameters.Add("@cpf", SqlDbType.VarChar).Value = cliente.CPF;
+                command.Parameters.Add("@statusClienteId", SqlDbType.Int).Value = cliente.StatusCliente.GetHashCode();
 
                 command.ExecuteNonQuery();
             }
@@ -77,6 +133,28 @@ namespace BibliotecaJoia.Models.Contexts
             }
         }
 
+        public void ExcluirCliente(string id)
+        {
+            try
+            {
+                _connection.Open();
+                var query = SqlManager.GetSql(TSql.EXCLUIR_CLIENTE);
+
+                var command = new SqlCommand(query, _connection);
+                command.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (_connection.State == ConnectionState.Open)
+                    _connection.Close();
+            }
+        }
+
         public void ExcluirLivro(string id)
         {
             try
@@ -96,6 +174,48 @@ namespace BibliotecaJoia.Models.Contexts
             {
                 if (_connection.State == ConnectionState.Open)
                     _connection.Close();
+            }
+        }
+
+        public List<Cliente> ListarClientes()
+        {
+            var clientes = new List<Cliente>();
+
+            try
+            {
+                var query = SqlManager.GetSql(TSql.LISTAR_CLIENTE);
+
+                var command = new SqlCommand(query, _connection);
+
+                var dataset = new DataSet();
+                var adapter = new SqlDataAdapter(command);
+                adapter.Fill(dataset);
+
+                var rows = dataset.Tables[0].Rows;
+
+                foreach (DataRow item in rows)
+                {
+                    var colunas = item.ItemArray;
+
+                    var id = colunas[0].ToString();
+                    var nome = colunas[1].ToString();
+                    var cpf = colunas[2].ToString();
+                    var email = colunas[3].ToString();
+                    var fone = colunas[4].ToString();
+                    var statusClienteId = colunas[5].ToString();
+
+                    var cliente = new Cliente { Id = id, Nome = nome, CPF = cpf, Email = email, Fone = fone, StatusClienteId = Int32.Parse(statusClienteId) };
+                    cliente.StatusCliente = GerenciadorDeStatus.PesquisarStatusDoClientePeloId(cliente.StatusClienteId);
+                    clientes.Add(cliente);
+                }
+                adapter = null;
+                dataset = null;
+
+                return clientes;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -131,6 +251,48 @@ namespace BibliotecaJoia.Models.Contexts
                 dataset = null;
 
                 return livros;                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Cliente PesquisarClientePorId(string id)
+        {
+            try
+            {
+                Cliente cliente = null;
+
+                var query = SqlManager.GetSql(TSql.PESQUISAR_CLIENTE);
+
+                var command = new SqlCommand(query, _connection);
+                command.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
+
+                var dataset = new DataSet();
+                var adapter = new SqlDataAdapter(command);
+                adapter.Fill(dataset);
+
+                var rows = dataset.Tables[0].Rows;
+
+                foreach (DataRow item in rows)
+                {
+                    var colunas = item.ItemArray;
+
+                    var codigo = colunas[0].ToString();
+                    var nome = colunas[1].ToString();
+                    var cpf = colunas[2].ToString();
+                    var email = colunas[3].ToString();
+                    var fone = colunas[4].ToString();
+                    var statusClienteId = colunas[5].ToString();
+
+                    cliente = new Cliente { Id = codigo, Nome = nome, CPF = cpf, Email = email, Fone = fone, StatusClienteId = Int32.Parse(statusClienteId) };
+                    cliente.StatusCliente = GerenciadorDeStatus.PesquisarStatusDoClientePeloId(cliente.StatusClienteId);
+                }
+                adapter = null;
+                dataset = null;
+
+                return cliente;
             }
             catch (Exception ex)
             {

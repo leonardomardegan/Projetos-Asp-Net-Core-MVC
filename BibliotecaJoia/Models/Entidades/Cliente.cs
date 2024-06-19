@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BibliotecaJoia.Models.Dtos;
+using BibliotecaJoia.Models.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,6 +13,21 @@ namespace BibliotecaJoia.Models.Entidades
         public string CPF { get; set; }
         public string Email { get; set; }
         public string Fone { get; set; }
-        public StatusCliente StatusClienteId { get; set; }
+        public int StatusClienteId { get; set; }
+        public StatusCliente StatusCliente { get; set; }
+        
+        public ClienteDto ConverterParaDto()
+        {
+            return new ClienteDto
+            {
+                Id = this.Id,
+                Nome = this.Nome,
+                Email = this.Email,
+                Fone = this.Fone,
+                CPF = this.CPF,
+                StatusClienteId = this.StatusClienteId.ToString(),
+                Status = GerenciadorDeStatus.PesquisarStatusDoClientePeloId(this.StatusClienteId).ToString()
+            };
+        }
     }
 }

@@ -14,5 +14,11 @@ namespace BibliotecaJoia.Models.Contracts.Contexts
         Livro PesquisarLivroPorId(string id);
         void AtualizarLivro(Livro livro);
         void ExcluirLivro(string id);
+
+        void CadastrarCliente(Cliente cliente);
+        List<Cliente> ListarClientes();
+        Cliente PesquisarClientePorId(string id);
+        void AtualizarCliente(Cliente cliente);
+        void ExcluirCliente(string id);
     }
 }
