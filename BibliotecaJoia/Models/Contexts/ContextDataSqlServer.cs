@@ -22,7 +22,7 @@ namespace BibliotecaJoia.Models.Contexts
             _connection = connectionManager.GetConnection();
         }
 
-        public void AtualizarLivro(LivroDto livro)
+        public void AtualizarLivro(Livro livro)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace BibliotecaJoia.Models.Contexts
                 command.Parameters.Add("@nome", SqlDbType.VarChar).Value = livro.Nome;
                 command.Parameters.Add("@autor", SqlDbType.VarChar).Value = livro.Autor;
                 command.Parameters.Add("@editora", SqlDbType.VarChar).Value = livro.Editora;
-                command.Parameters.Add("@statusLivroId", SqlDbType.Int).Value = livro.StatusLivroId;
+                command.Parameters.Add("@statusLivroId", SqlDbType.Int).Value = livro.StatusLivro.GetHashCode();
 
                 command.ExecuteNonQuery();
             }
@@ -99,9 +99,9 @@ namespace BibliotecaJoia.Models.Contexts
             }
         }
 
-        public List<LivroDto> ListarLivro()
+        public List<Livro> ListarLivro()
         {
-            var livros = new List<LivroDto>();
+            var livros = new List<Livro>();
 
             try
             {
@@ -124,7 +124,7 @@ namespace BibliotecaJoia.Models.Contexts
                     var autor = colunas[2].ToString();
                     var editora = colunas[3].ToString();
 
-                    var livro = new LivroDto { Id = id, Nome = nome, Autor = autor, Editora = editora };
+                    var livro = new Livro { Id = id, Nome = nome, Autor = autor, Editora = editora };
                     livros.Add(livro);
                 }
                 adapter = null;
@@ -138,11 +138,11 @@ namespace BibliotecaJoia.Models.Contexts
             }
         }
 
-        public LivroDto PesquisarLivroPorId(string id)
+        public Livro PesquisarLivroPorId(string id)
         {
             try
             {
-                LivroDto livro = null;
+                Livro livro = null;
 
                 var query = SqlManager.GetSql(TSql.PESQUISAR_LIVRO);
 
@@ -164,7 +164,7 @@ namespace BibliotecaJoia.Models.Contexts
                     var autor = colunas[2].ToString();
                     var editora = colunas[3].ToString();
 
-                    livro = new LivroDto { Id = codigo, Nome = nome, Autor = autor, Editora = editora };
+                    livro = new Livro { Id = codigo, Nome = nome, Autor = autor, Editora = editora };
                 }
                 adapter = null;
                 dataset = null;

@@ -21,7 +21,8 @@ namespace BibliotecaJoia.Models.Services
         {
             try
             {
-                _livroRepository.Atualizar(livro);
+                var objLivro = livro.ConverterParaEntidade();
+                _livroRepository.Atualizar(objLivro);
             }
             catch (Exception ex)
             {
@@ -33,7 +34,9 @@ namespace BibliotecaJoia.Models.Services
         {
             try
             {
-                _livroRepository.Cadastrar(livro);
+                var objLivro = livro.ConverterParaEntidade();
+                objLivro.Cadastrar();
+                _livroRepository.Cadastrar(objLivro);
             }
             catch (Exception ex)
             {
@@ -57,7 +60,14 @@ namespace BibliotecaJoia.Models.Services
         {
             try
             {
-                return _livroRepository.Listar();
+                var livrosDto = new List<LivroDto>();
+                var livros = _livroRepository.Listar();
+                foreach(var item in livros)
+                {
+                    livrosDto.Add(item.ConverterParaDto());
+                }
+
+                return livrosDto;
             }
             catch(Exception ex)
             {
@@ -69,7 +79,8 @@ namespace BibliotecaJoia.Models.Services
         {
             try
             {
-                return _livroRepository.PesquisarPorId(id);
+                var livro = _livroRepository.PesquisarPorId(id);
+                return livro.ConverterParaDto();
             }
             catch (Exception ex)
             {

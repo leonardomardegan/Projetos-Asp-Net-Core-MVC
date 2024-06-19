@@ -1,5 +1,6 @@
 ﻿using BibliotecaJoia.Models.Contracts.Contexts;
 using BibliotecaJoia.Models.Dtos;
+using BibliotecaJoia.Models.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +10,15 @@ namespace BibliotecaJoia.Models.Contexts
 {
     public class ContextDataFake : IContextData
     {
-        private static List<LivroDto> livros;
+        private static List<Livro> livros = new List<Livro>();
 
         public ContextDataFake()
         {
-            livros = new List<LivroDto>();
+            //livros = new List<LivroDto>();
             InitializeData();
         }
 
-        public void AtualizarLivro(LivroDto livro)
+        public void AtualizarLivro(Livro livro)
         {
             try
             {
@@ -36,7 +37,7 @@ namespace BibliotecaJoia.Models.Contexts
             }
         }
 
-        public void CadastrarLivro(LivroDto livro)
+        public void CadastrarLivro(Livro livro)
         {
             try
             {
@@ -61,7 +62,7 @@ namespace BibliotecaJoia.Models.Contexts
             }
         }
 
-        public List<LivroDto> ListarLivro()
+        public List<Livro> ListarLivro()
         {
             try
             {
@@ -75,7 +76,7 @@ namespace BibliotecaJoia.Models.Contexts
             }
         }
 
-        public LivroDto PesquisarLivroPorId(string id)
+        public Livro PesquisarLivroPorId(string id)
         {
             try
             {
@@ -89,19 +90,19 @@ namespace BibliotecaJoia.Models.Contexts
 
         private void InitializeData()
         {
-            var livro = new LivroDto { Nome = "Implementando Domain-Driven Design", Autor = "Vaugh Vernon", Editora = "Alta Books" };
+            var livro = new Livro { Nome = "Implementando Domain-Driven Design", Autor = "Vaugh Vernon", Editora = "Alta Books" };
             livros.Add(livro);
 
-            livro = new LivroDto { Nome = "Domain-Driven Design", Autor = "Eric Evans", Editora = "Alta Books" };
+            livro = new Livro { Nome = "Domain-Driven Design", Autor = "Eric Evans", Editora = "Alta Books" };
             livros.Add(livro);
 
-            livro = new LivroDto { Nome = "Redes Guia Prático", Autor = "Carlos E. Morimoto", Editora = "ASul Editores" };
+            livro = new Livro { Nome = "Redes Guia Prático", Autor = "Carlos E. Morimoto", Editora = "ASul Editores" };
             livros.Add(livro);
 
-            livro = new LivroDto { Nome = "PHP Programando com Orientalção a Objetos", Autor = "Pablo Dall'Oglio", Editora = "Novatec" };
+            livro = new Livro { Nome = "PHP Programando com Orientalção a Objetos", Autor = "Pablo Dall'Oglio", Editora = "Novatec" };
             livros.Add(livro);
 
-            livro = new LivroDto { Nome = "Introdução a Programação com Python", Autor = "Nilo N. C. Menezes", Editora = "Novatec" };
+            livro = new Livro { Nome = "Introdução a Programação com Python", Autor = "Nilo N. C. Menezes", Editora = "Novatec" };
             livros.Add(livro);
         }
     }

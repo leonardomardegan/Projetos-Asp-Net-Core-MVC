@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace BibliotecaJoia.Models.Dtos
 {
-    public class LivroDto
+    public class LivroDto : EntidadeBase
     {
-        public string Id { get; set; }
         public string Nome { get; set; }
         public string Autor { get; set; }
         public string Editora { get; set; }
@@ -27,6 +26,7 @@ namespace BibliotecaJoia.Models.Dtos
             {
                 Id = this.Id,
                 Nome = this.Nome,
+                Autor = this.Autor,
                 Editora = this.Editora,
                 StatusLivro = GerenciadorDeStatus.PesquisarStatusDoLivroPeloId(this.StatusLivroId)
             };
