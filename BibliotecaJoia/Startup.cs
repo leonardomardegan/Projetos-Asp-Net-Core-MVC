@@ -31,10 +31,22 @@ namespace BibliotecaJoia
         {
             services.AddControllersWithViews();
 
-            services.AddScoped<ILivroRepository, LivroRepository>();
-            services.AddScoped<ILivroService, LivroService>();
+            AddDependenciesRepositories(services);
+            AddDependenciesServices(services);
 
             ConfigureDatasource(services);
+        }
+
+        public void AddDependenciesRepositories(IServiceCollection services)
+        {
+            services.AddScoped<ILivroRepository, LivroRepository>();
+            services.AddScoped<IClienteRepository, ClienteRepository>();
+        }
+
+        public void AddDependenciesServices(IServiceCollection services)
+        {
+            services.AddScoped<ILivroService, LivroService>();
+            services.AddScoped<IClienteService, ClienteService>();
         }
 
         public void ConfigureDatasource(IServiceCollection services)
