@@ -1,5 +1,4 @@
-﻿using BibliotecaJoia.Models.Dtos;
-using BibliotecaJoia.Models.Entidades;
+﻿using BibliotecaJoia.Models.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BibliotecaJoia.Models.Contracts.Repositories
 {
-    public interface ILivroRepository : IRepository<Livro, string>
+    public interface IUsuarioRepository : IRepository<Usuario, int>
     {
 
     }
