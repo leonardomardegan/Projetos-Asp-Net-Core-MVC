@@ -42,6 +42,11 @@ namespace BibliotecaJoia.Models.Contexts
             }
         }
 
+        public void AtualizarUsuario(Usuario usuario)
+        {
+            throw new NotImplementedException();
+        }
+
         public void CadastrarCliente(Cliente cliente)
         {
             throw new NotImplementedException();
@@ -57,6 +62,11 @@ namespace BibliotecaJoia.Models.Contexts
             {
                 throw ex;
             }
+        }
+
+        public void CadastrarUsuario(Usuario usuario)
+        {
+            throw new NotImplementedException();
         }
 
         public void ExcluirCliente(string id)
@@ -75,6 +85,11 @@ namespace BibliotecaJoia.Models.Contexts
             {
                 throw ex;
             }
+        }
+
+        public void ExcluirUsuario(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public List<Cliente> ListarClientes()
@@ -96,6 +111,11 @@ namespace BibliotecaJoia.Models.Contexts
             }
         }
 
+        public List<Usuario> ListarUsuarios()
+        {
+            throw new NotImplementedException();
+        }
+
         public Cliente PesquisarClientePorId(string id)
         {
             throw new NotImplementedException();
@@ -111,6 +131,11 @@ namespace BibliotecaJoia.Models.Contexts
             {
                 throw ex;
             }
+        }
+
+        public Usuario PesquisarUsuarioPorId(int id)
+        {
+            throw new NotImplementedException();
         }
 
         private void InitializeData()

@@ -17,6 +17,12 @@ namespace BibliotecaJoia.Models.Enums
         LISTAR_CLIENTE,
         PESQUISAR_CLIENTE,
         ATUALIZAR_CLIENTE,
-        EXCLUIR_CLIENTE
+        EXCLUIR_CLIENTE,
+
+        CADASTRAR_USUARIO,
+        LISTAR_USUARIO,
+        PESQUISAR_USUARIO,
+        ATUALIZAR_USUARIO,
+        EXCLUIR_USUARIO
     }
 }
