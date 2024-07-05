@@ -41,12 +41,14 @@ namespace BibliotecaJoia
         {
             services.AddScoped<ILivroRepository, LivroRepository>();
             services.AddScoped<IClienteRepository, ClienteRepository>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
         }
 
         public void AddDependenciesServices(IServiceCollection services)
         {
             services.AddScoped<ILivroService, LivroService>();
             services.AddScoped<IClienteService, ClienteService>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
         }
 
         public void ConfigureDatasource(IServiceCollection services)

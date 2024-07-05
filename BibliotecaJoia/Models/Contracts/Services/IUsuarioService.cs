@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BibliotecaJoia.Models.Contracts.Services
 {
-    public interface ILivroService : IGenericService<LivroDto, string>
+    public interface IUsuarioService : IGenericService<UsuarioDto, int>
     {
 
     }

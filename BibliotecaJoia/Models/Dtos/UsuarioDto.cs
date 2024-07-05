@@ -1,20 +1,20 @@
-﻿using BibliotecaJoia.Models.Dtos;
+﻿using BibliotecaJoia.Models.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BibliotecaJoia.Models.Entidades
+namespace BibliotecaJoia.Models.Dtos
 {
-    public class Usuario
+    public class UsuarioDto
     {
         public int Id { get; set; }
         public string Login { get; set; }
         public string Senha { get; set; }
 
-        public UsuarioDto ConverterParaDto()
+        public Usuario ConverterParaEntidade()
         {
-            return new UsuarioDto { Id = this.Id, Login = this.Login, Senha = this.Senha };
+            return new Usuario { Id = this.Id, Login = this.Login, Senha = this.Senha };
         }
     }
 }
