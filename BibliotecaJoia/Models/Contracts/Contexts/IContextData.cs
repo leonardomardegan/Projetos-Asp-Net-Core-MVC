@@ -26,5 +26,6 @@ namespace BibliotecaJoia.Models.Contracts.Contexts
         Usuario PesquisarUsuarioPorId(int id);
         void AtualizarUsuario(Usuario usuario);
         void ExcluirUsuario(int id);
+        UsuarioDto EfetuarLogin(UsuarioDto usuario);
     }
 }

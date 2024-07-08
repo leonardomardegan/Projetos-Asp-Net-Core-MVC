@@ -8,6 +8,6 @@ namespace BibliotecaJoia.Models.Contracts.Services
 {
     public interface IUsuarioService : IGenericService<UsuarioDto, int>
     {
-
+        UsuarioDto EfetuarLogin(UsuarioDto usuario);
     }
 }

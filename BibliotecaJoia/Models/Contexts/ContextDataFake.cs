@@ -69,6 +69,11 @@ namespace BibliotecaJoia.Models.Contexts
             throw new NotImplementedException();
         }
 
+        public UsuarioDto EfetuarLogin(UsuarioDto usuario)
+        {
+            throw new NotImplementedException();
+        }
+
         public void ExcluirCliente(string id)
         {
             throw new NotImplementedException();

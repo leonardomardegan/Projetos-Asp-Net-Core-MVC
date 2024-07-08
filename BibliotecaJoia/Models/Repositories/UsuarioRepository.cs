@@ -1,5 +1,6 @@
 ﻿using BibliotecaJoia.Models.Contracts.Contexts;
 using BibliotecaJoia.Models.Contracts.Repositories;
+using BibliotecaJoia.Models.Dtos;
 using BibliotecaJoia.Models.Entidades;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,11 @@ namespace BibliotecaJoia.Models.Repositories
         public void Cadastrar(Usuario entidade)
         {
             _contextData.CadastrarUsuario(entidade);
+        }
+
+        public UsuarioDto EfetuarLogin(UsuarioDto usuario)
+        {
+            return _contextData.EfetuarLogin(usuario);
         }
 
         public void Excluir(int id)

@@ -23,6 +23,7 @@ namespace BibliotecaJoia.Models.Enums
         LISTAR_USUARIO,
         PESQUISAR_USUARIO,
         ATUALIZAR_USUARIO,
-        EXCLUIR_USUARIO
+        EXCLUIR_USUARIO,
+        EFETUAR_LOGIN
     }
 }

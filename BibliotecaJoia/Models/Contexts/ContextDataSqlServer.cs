@@ -485,6 +485,42 @@ namespace BibliotecaJoia.Models.Contexts
                 throw ex;
             }
         }
+        public UsuarioDto EfetuarLogin(UsuarioDto usuario)
+        {
+            try
+            {
+                var query = SqlManager.GetSql(TSql.EFETUAR_LOGIN);
+
+                var command = new SqlCommand(query, _connection);
+                command.Parameters.Add("@login", SqlDbType.VarChar).Value = usuario.Login;
+                command.Parameters.Add("@senha", SqlDbType.VarChar).Value = usuario.Senha;
+
+                var dataset = new DataSet();
+                var adapter = new SqlDataAdapter(command);
+                adapter.Fill(dataset);
+
+                var rows = dataset.Tables[0].Rows;
+
+                foreach (DataRow item in rows)
+                {
+                    var colunas = item.ItemArray;
+
+                    var codigo = Int32.Parse(colunas[0].ToString());
+                    var login = colunas[1].ToString();
+
+                    usuario = new UsuarioDto { Id = codigo, Login = login };
+                }
+                adapter = null;
+                dataset = null;
+
+                return usuario;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         #endregion
     }
 }
