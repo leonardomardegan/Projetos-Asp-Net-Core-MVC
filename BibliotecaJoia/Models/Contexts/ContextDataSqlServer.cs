@@ -489,6 +489,7 @@ namespace BibliotecaJoia.Models.Contexts
         {
             try
             {
+                UsuarioDto result = null;
                 var query = SqlManager.GetSql(TSql.EFETUAR_LOGIN);
 
                 var command = new SqlCommand(query, _connection);
@@ -508,12 +509,12 @@ namespace BibliotecaJoia.Models.Contexts
                     var codigo = Int32.Parse(colunas[0].ToString());
                     var login = colunas[1].ToString();
 
-                    usuario = new UsuarioDto { Id = codigo, Login = login };
+                    result = new UsuarioDto { Id = codigo, Login = login };
                 }
                 adapter = null;
                 dataset = null;
 
-                return usuario;
+                return result;
             }
             catch (Exception ex)
             {

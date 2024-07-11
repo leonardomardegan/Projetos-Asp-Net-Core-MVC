@@ -33,11 +33,11 @@ namespace BibliotecaJoia.Controllers
 
                 if (resultado != null)
                 {
-                    return RedirectToAction("/Home");
+                    return Redirect("/Home");
                 }
                 else
                 {
-                    return RedirectToAction("/Home");
+                    return Redirect("/Home");
                 }           
             }
             catch(Exception ex)
