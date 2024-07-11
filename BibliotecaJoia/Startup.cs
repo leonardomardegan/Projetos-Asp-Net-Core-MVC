@@ -50,6 +50,7 @@ namespace BibliotecaJoia
             services.AddScoped<ILivroService, LivroService>();
             services.AddScoped<IClienteService, ClienteService>();
             services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<IEmprestimoLivroService, EmprestimoLivroService>();
         }
 
         public void ConfigureDatasource(IServiceCollection services)
