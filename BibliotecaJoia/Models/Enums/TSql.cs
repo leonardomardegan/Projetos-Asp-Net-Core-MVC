@@ -24,6 +24,10 @@ namespace BibliotecaJoia.Models.Enums
         PESQUISAR_USUARIO,
         ATUALIZAR_USUARIO,
         EXCLUIR_USUARIO,
-        EFETUAR_LOGIN
+        EFETUAR_LOGIN,
+
+        EFETUAR_EMPRESTIMO_LIVRO,
+        ATUALIZAR_STATUS_LIVRO,
+        EFETUAR_DEVOLUCAO_LIVRO
     }
 }

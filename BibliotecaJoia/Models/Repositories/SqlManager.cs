@@ -82,7 +82,24 @@ namespace BibliotecaJoia.Models.Repositories
                 case TSql.EFETUAR_LOGIN:
                     sql = "select id, login from usuario where login = @login and senha = @senha";
                     break;
-                    #endregion
+                #endregion
+
+                #region Consultas SQL para Emprestimo
+                case TSql.EFETUAR_EMPRESTIMO_LIVRO:
+                    sql = "insert into emprestimoLivro (clienteId, usuarioId, livroId, dataEmprestimo, dataDevolucao) " +
+                        "values (@clienteId, @usuarioId, @livroId, @dataEmprestimo, @dataDevolucao)";
+                    break;
+
+                case TSql.EFETUAR_DEVOLUCAO_LIVRO:
+                    sql = "update emprestimoLivro set dataDevolucaoEfetiva = @dataDevolucaoEfetiva " +
+                        "where clienteId = @clienteId and livroId = @livroId";
+                    break;
+
+                case TSql.ATUALIZAR_STATUS_LIVRO:
+                    sql = "update livro set statusLivroId = @statusLivroId where id = @id";
+                    break;
+
+                #endregion
             }
 
             return sql;

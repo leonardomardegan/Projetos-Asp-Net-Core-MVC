@@ -42,6 +42,7 @@ namespace BibliotecaJoia
             services.AddScoped<ILivroRepository, LivroRepository>();
             services.AddScoped<IClienteRepository, ClienteRepository>();
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<IEmprestimoLivroRepository, EmprestimoLivroRepository>();
         }
 
         public void AddDependenciesServices(IServiceCollection services)
