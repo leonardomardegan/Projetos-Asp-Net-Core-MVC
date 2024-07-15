@@ -10,6 +10,7 @@ namespace BibliotecaJoia.Controllers
     {
         public IActionResult Index()
         {
+            string login = (string)TempData["login"];
             return View();
         }
     }

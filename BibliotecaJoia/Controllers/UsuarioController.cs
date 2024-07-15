@@ -1,6 +1,7 @@
 ﻿using BibliotecaJoia.Models.Contracts.Services;
 using BibliotecaJoia.Models.Dtos;
 using BibliotecaJoia.Models.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,10 @@ namespace BibliotecaJoia.Controllers
                 {
                     TempData["userId"] = resultado.Id;
                     TempData["login"] = resultado.Login;
+
+                    HttpContext.Session.SetString("_UserId", resultado.Id.ToString());
+                    HttpContext.Session.SetString("_Login", resultado.Login);
+
                     TempData["loginError"] = false;
 
                     return Redirect("/Emprestimo/Index");
@@ -56,8 +61,11 @@ namespace BibliotecaJoia.Controllers
         {
             TempData["userId"] = null;
             TempData["login"] = null;
-            TempData["loginError"] = false;
 
+            HttpContext.Session.Remove("_UserId");
+            HttpContext.Session.Remove("_Login");
+
+            TempData["loginError"] = false;
             return Redirect("/Home");
         }
     }
