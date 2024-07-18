@@ -285,8 +285,10 @@ namespace BibliotecaJoia.Models.Contexts
                     var nome = colunas[1].ToString();
                     var autor = colunas[2].ToString();
                     var editora = colunas[3].ToString();
+                    var statusLivroId = colunas[4].ToString();
 
-                    var livro = new Livro { Id = id, Nome = nome, Autor = autor, Editora = editora };
+                    var livro = new Livro { Id = id, Nome = nome, Autor = autor, Editora = editora, StatusLivroId = Int32.Parse(statusLivroId) };
+                    livro.StatusLivro = GerenciadorDeStatus.PesquisarStatusDoLivroPeloId(livro.StatusLivroId);
                     livros.Add(livro);
                 }
                 adapter = null;
