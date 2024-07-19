@@ -35,6 +35,7 @@ namespace BibliotecaJoia.Models.Services
             try
             {
                 var entidade = emprestimoLivro.ConverterParaEntidade();
+                entidade.RealizarEmprestimo();
                 _emprestimoLivroRepository.EfetuarEmprestimo(entidade);
             }
             catch (Exception ex)

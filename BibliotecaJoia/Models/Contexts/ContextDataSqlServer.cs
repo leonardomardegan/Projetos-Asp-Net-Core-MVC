@@ -548,7 +548,7 @@ namespace BibliotecaJoia.Models.Contexts
                 command.ExecuteNonQuery();
 
                 var query2 = SqlManager.GetSql(TSql.ATUALIZAR_STATUS_LIVRO);
-                var command2 = new SqlCommand(query, _connection, transaction);
+                var command2 = new SqlCommand(query2, _connection, transaction);
 
                 command2.Parameters.Add("@id", SqlDbType.VarChar).Value = emprestimoLivro.LivroId;
                 command2.Parameters.Add("@statusLivroId", SqlDbType.Int).Value = StatusLivro.EMPRESTADO.GetHashCode();

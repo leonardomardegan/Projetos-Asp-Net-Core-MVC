@@ -87,7 +87,7 @@ namespace BibliotecaJoia.Models.Repositories
                 #region Consultas SQL para Emprestimo
                 case TSql.EFETUAR_EMPRESTIMO_LIVRO:
                     sql = "insert into emprestimoLivro (clienteId, usuarioId, livroId, dataEmprestimo, dataDevolucao) " +
-                        "values (@clienteId, @usuarioId, @livroId, @dataEmprestimo, @dataDevolucao)";
+                        "values (convert(binary(36), @clienteId), @usuarioId, convert(binary(36), @livroId), @dataEmprestimo, @dataDevolucao)";
                     break;
 
                 case TSql.EFETUAR_DEVOLUCAO_LIVRO:
@@ -96,7 +96,7 @@ namespace BibliotecaJoia.Models.Repositories
                     break;
 
                 case TSql.ATUALIZAR_STATUS_LIVRO:
-                    sql = "update livro set statusLivroId = @statusLivroId where id = @id";
+                    sql = "update livro set statusLivroId = @statusLivroId where convert(varchar(36), id) = @id";
                     break;
 
                 #endregion
