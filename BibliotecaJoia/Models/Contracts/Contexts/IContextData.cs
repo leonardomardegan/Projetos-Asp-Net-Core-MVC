@@ -30,5 +30,6 @@ namespace BibliotecaJoia.Models.Contracts.Contexts
 
         void EfetuarEmprestimoLivro(EmprestimoLivro emprestimoLivro);
         void EfetuarDevolucaoLivro(EmprestimoLivro emprestimoLivro);
+        List<ConsultaEmprestimoDto> ConsultarEmprestimos();
     }
 }

@@ -10,5 +10,6 @@ namespace BibliotecaJoia.Models.Contracts.Services
     {
         void EfetuarEmprestimo(EmprestimoLivroDto emprestimoLivro);
         void EfetuarDevolucao(EmprestimoLivroDto emprestimoLivro);
+        List<ConsultaEmprestimoDto> ConsultarEmprestimos();
     }
 }

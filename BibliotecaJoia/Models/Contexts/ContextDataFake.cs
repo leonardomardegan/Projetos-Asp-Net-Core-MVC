@@ -69,6 +69,11 @@ namespace BibliotecaJoia.Models.Contexts
             throw new NotImplementedException();
         }
 
+        public List<ConsultaEmprestimoDto> ConsultarEmprestimos()
+        {
+            throw new NotImplementedException();
+        }
+
         public void EfetuarDevolucaoLivro(EmprestimoLivro emprestimoLivro)
         {
             throw new NotImplementedException();

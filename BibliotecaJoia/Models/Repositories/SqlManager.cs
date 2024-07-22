@@ -99,6 +99,21 @@ namespace BibliotecaJoia.Models.Repositories
                     sql = "update livro set statusLivroId = @statusLivroId where convert(varchar(36), id) = @id";
                     break;
 
+                case TSql.CONSULTAR_EMPRESTIMOS_LIVROS:
+                    sql = @"select
+                                l.nome 'livro', l.autor, l.editora,
+	                            c.nome 'cliente', c.cpf,
+	                            el.dataEmprestimo, el.dataDevolucao, el.dataDevolucaoEfetiva,
+	                            sl.status 'status do livro',
+	                            u.login 'login bibliotecario'
+                            from
+                                livro l inner join
+                                emprestimoLivro el on el.livroId = l.id inner join
+                                cliente c on el.clienteId = c.id inner join
+                                statusLivro sl on l.statusLivroId = sl.id inner join
+                                usuario u on el.usuarioId = u.id";
+                    break;
+
                 #endregion
             }
 

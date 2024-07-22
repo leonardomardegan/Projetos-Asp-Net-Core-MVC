@@ -1,4 +1,5 @@
-﻿using BibliotecaJoia.Models.Entidades;
+﻿using BibliotecaJoia.Models.Dtos;
+using BibliotecaJoia.Models.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace BibliotecaJoia.Models.Contracts.Repositories
         void EfetuarEmprestimo(EmprestimoLivro emprestimoLivro);
 
         void EfetuarDevolucao(EmprestimoLivro emprestimoLivro);
+        List<ConsultaEmprestimoDto> ConsultarEmprestimos();
     }
 }

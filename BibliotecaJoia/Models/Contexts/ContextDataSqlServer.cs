@@ -16,17 +16,22 @@ namespace BibliotecaJoia.Models.Contexts
     public class ContextDataSqlServer : IContextData
     {
         #region Atributos
+
         private readonly SqlConnection _connection = null;
+        
         #endregion
 
         #region Construtores
+
         public ContextDataSqlServer(IConnectionManager connectionManager)
         {
             _connection = connectionManager.GetConnection();
         }
+        
         #endregion
 
         #region Contexto de Clientes
+
         public void AtualizarCliente(Cliente cliente)
         {
             try
@@ -184,9 +189,11 @@ namespace BibliotecaJoia.Models.Contexts
                 throw ex;
             }
         }
+        
         #endregion
 
         #region Contexto de Livros
+
         public void AtualizarLivro(Livro livro)
         {
             try
@@ -339,9 +346,11 @@ namespace BibliotecaJoia.Models.Contexts
                 throw ex;
             }
         }
+        
         #endregion
 
         #region Contexto de Usuarios
+
         public void AtualizarUsuario(Usuario usuario)
         {
             try
@@ -523,6 +532,7 @@ namespace BibliotecaJoia.Models.Contexts
                 throw ex;
             }
         }
+        
         #endregion
 
         #region Contexto de Emprestimo de Livros
@@ -612,6 +622,55 @@ namespace BibliotecaJoia.Models.Contexts
                     _connection.Close();
             }
         }
+
+        public List<ConsultaEmprestimoDto> ConsultarEmprestimos()
+        {
+            var emprestimos = new List<ConsultaEmprestimoDto>();
+
+            try
+            {
+                var query = SqlManager.GetSql(TSql.CONSULTAR_EMPRESTIMOS_LIVROS);
+
+                var command = new SqlCommand(query, _connection);
+
+                var dataset = new DataSet();
+                var adapter = new SqlDataAdapter(command);
+                adapter.Fill(dataset);
+
+                var rows = dataset.Tables[0].Rows;
+
+                foreach (DataRow item in rows)
+                {
+                    var colunas = item.ItemArray;
+
+                    var emprestimo = new ConsultaEmprestimoDto
+                    {
+                        Livro = colunas[0].ToString(),
+                        Autor = colunas[1].ToString(),
+                        Editora = colunas[2].ToString(),
+                        Cliente = colunas[3].ToString(),
+                        CPF = colunas[4].ToString(),
+                        DataEmprestimo = DateTime.Parse(colunas[5].ToString()).ToString("dd/MM/yyyy"),
+                        DataDevolucao = DateTime.Parse(colunas[6].ToString()).ToString("dd/MM/yyyy"),
+                        DataDevolucaoEfetiva = colunas[7].ToString(),
+                        StatusLivro = colunas[8].ToString(),
+                        LoginBibliotecario = colunas[9].ToString()
+                    };
+
+                    emprestimos.Add(emprestimo);
+                }
+                adapter = null;
+                dataset = null;
+
+                return emprestimos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
         #endregion
     }
 }

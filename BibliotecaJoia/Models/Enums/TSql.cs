@@ -28,6 +28,7 @@ namespace BibliotecaJoia.Models.Enums
 
         EFETUAR_EMPRESTIMO_LIVRO,
         ATUALIZAR_STATUS_LIVRO,
-        EFETUAR_DEVOLUCAO_LIVRO
+        EFETUAR_DEVOLUCAO_LIVRO,
+        CONSULTAR_EMPRESTIMOS_LIVROS
     }
 }

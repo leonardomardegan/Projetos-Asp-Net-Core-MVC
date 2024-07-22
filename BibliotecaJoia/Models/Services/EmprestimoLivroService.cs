@@ -43,5 +43,10 @@ namespace BibliotecaJoia.Models.Services
                 throw ex;
             }
         }
+
+        public List<ConsultaEmprestimoDto> ConsultarEmprestimos()
+        {
+            return _emprestimoLivroRepository.ConsultarEmprestimos();
+        }
     }
 }

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<BibliotecaJoia.Models.Dtos.ConsultaEmprestimoDto>
+
+@{
+    ViewData["Title"] = "Consulta";
+}
+
+<h3>Consulta de Empréstimo de Livros</h3>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Livro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Autor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Editora)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CPF)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataEmprestimo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataDevolucao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataDevolucaoEfetiva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StatusLivro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoginBibliotecario)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Livro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Editora)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CPF)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataEmprestimo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataDevolucao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataDevolucaoEfetiva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StatusLivro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoginBibliotecario)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+        }
+    </tbody>
+
+    @Html.ActionLink("Voltar", "Index")
+
+</table>

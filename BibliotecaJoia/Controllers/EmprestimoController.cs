@@ -30,6 +30,19 @@ namespace BibliotecaJoia.Controllers
             return View();
         }
 
+        public IActionResult Consulta()
+        {
+            try
+            {
+                var emprestimos = _emprestimoService.ConsultarEmprestimos();
+                return View(emprestimos);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult EfetuarEmprestimo([Bind("Cliente, Livro")] EmprestimoDto emprestimo)
@@ -52,7 +65,7 @@ namespace BibliotecaJoia.Controllers
 
                 _emprestimoService.EfetuarEmprestimo(entidade);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Consulta");
             }
             catch (Exception ex)
             {
