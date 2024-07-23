@@ -16,13 +16,7 @@
                 @Html.DisplayNameFor(model => model.Autor)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Editora)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Cliente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CPF)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.DataEmprestimo)
@@ -31,54 +25,37 @@
                 @Html.DisplayNameFor(model => model.DataDevolucao)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DataDevolucaoEfetiva)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.StatusLivro)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LoginBibliotecario)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Livro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Autor)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Editora)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cliente)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CPF)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataEmprestimo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataDevolucao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DataDevolucaoEfetiva)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StatusLivro)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.LoginBibliotecario)
-            </td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+        @foreach (var item in Model) 
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Livro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Autor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataEmprestimo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataDevolucao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StatusLivro)
+                </td>
+                <td>
+                    @Html.ActionLink("Detalhes", "PesquisarEmprestimo", new { nomeLivro = item.Livro, nomeCliente = item.Cliente, dataEmprestimo = item.DataEmprestimo })
+                </td>
+            </tr>
         }
     </tbody>
 

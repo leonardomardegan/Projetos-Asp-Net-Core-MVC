@@ -85,6 +85,7 @@ namespace BibliotecaJoia.Models.Repositories
                 #endregion
 
                 #region Consultas SQL para Emprestimo
+
                 case TSql.EFETUAR_EMPRESTIMO_LIVRO:
                     sql = "insert into emprestimoLivro (clienteId, usuarioId, livroId, dataEmprestimo, dataDevolucao) " +
                         "values (convert(binary(36), @clienteId), @usuarioId, convert(binary(36), @livroId), @dataEmprestimo, @dataDevolucao)";
@@ -114,7 +115,25 @@ namespace BibliotecaJoia.Models.Repositories
                                 usuario u on el.usuarioId = u.id";
                     break;
 
-                #endregion
+                case TSql.PESQUISAR_EMPRESTIMO_LIVROS:
+                    sql = @"select
+                                l.nome 'livro', l.autor, l.editora,
+	                            c.nome 'cliente', c.cpf,
+	                            el.dataEmprestimo, el.dataDevolucao, el.dataDevolucaoEfetiva,
+	                            sl.status 'status do livro',
+	                            u.login 'login bibliotecario'
+                            from
+                                livro l inner join
+                                emprestimoLivro el on el.livroId = l.id inner join
+                                cliente c on el.clienteId = c.id inner join
+                                statusLivro sl on l.statusLivroId = sl.id inner join
+                                usuario u on el.usuarioId = u.id
+                            where
+                                l.nome = @nomeLivro and c.nome = @nomeCliente and dateadd(dd, 0, datediff(dd, 0, el.dataEmprestimo)) = @dataEmprestimo
+                            ";
+                    break;
+
+                    #endregion
             }
 
             return sql;

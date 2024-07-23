@@ -141,6 +141,11 @@ namespace BibliotecaJoia.Models.Contexts
             throw new NotImplementedException();
         }
 
+        public ConsultaEmprestimoDto PesquisarEmprestimo(string nomeLivro, string nomeCliente, DateTime dataEmprestimo)
+        {
+            throw new NotImplementedException();
+        }
+
         public Livro PesquisarLivroPorId(string id)
         {
             try

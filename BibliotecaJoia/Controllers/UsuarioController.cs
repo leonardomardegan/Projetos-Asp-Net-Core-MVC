@@ -39,7 +39,7 @@ namespace BibliotecaJoia.Controllers
 
                     TempData["loginError"] = false;
 
-                    return Redirect("/Emprestimo/Index");
+                    return Redirect("/Emprestimo/Consulta");
                 }
                 else
                 {
@@ -59,7 +59,7 @@ namespace BibliotecaJoia.Controllers
             HttpContext.Session.Remove("_UserId");
             HttpContext.Session.Remove("_Login");
 
-            TempData["loginError"] = false;
+            TempData["loginError"] = null;
             return Redirect("/Home");
         }
     }

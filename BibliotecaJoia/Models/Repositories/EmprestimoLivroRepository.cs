@@ -32,5 +32,11 @@ namespace BibliotecaJoia.Models.Repositories
         {
             _contextData.EfetuarEmprestimoLivro(emprestimoLivro);
         }
+
+        public ConsultaEmprestimoDto PesquisarEmprestimo(string nomeLivro, string nomeCliente, DateTime dataEmprestimo)
+        {
+            ConsultaEmprestimoDto result = _contextData.PesquisarEmprestimo(nomeLivro, nomeCliente, dataEmprestimo);
+            return result;
+        }
     }
 }

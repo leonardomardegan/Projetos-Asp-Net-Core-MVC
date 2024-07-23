@@ -48,5 +48,10 @@ namespace BibliotecaJoia.Models.Services
         {
             return _emprestimoLivroRepository.ConsultarEmprestimos();
         }
+
+        public ConsultaEmprestimoDto PesquisarEmprestimo(string nomeLivro, string nomeCliente, DateTime dataEmprestimo)
+        {
+            return _emprestimoLivroRepository.PesquisarEmprestimo(nomeLivro, nomeCliente, dataEmprestimo);
+        }
     }
 }

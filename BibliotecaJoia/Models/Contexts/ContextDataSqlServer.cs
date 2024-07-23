@@ -671,6 +671,55 @@ namespace BibliotecaJoia.Models.Contexts
 
         }
 
+        public ConsultaEmprestimoDto PesquisarEmprestimo(string nomeLivro, string nomeCliente, DateTime dataEmprestimo)
+        {
+            ConsultaEmprestimoDto emprestimo = null;
+
+            try
+            {
+                var query = SqlManager.GetSql(TSql.PESQUISAR_EMPRESTIMO_LIVROS);
+
+                var command = new SqlCommand(query, _connection);
+
+                command.Parameters.Add("@nomeLivro", SqlDbType.VarChar).Value = nomeLivro;
+                command.Parameters.Add("@nomeCliente", SqlDbType.VarChar).Value = nomeCliente;
+                command.Parameters.Add("@dataEmprestimo", SqlDbType.DateTime).Value = dataEmprestimo;
+
+                var dataset = new DataSet();
+                var adapter = new SqlDataAdapter(command);
+                adapter.Fill(dataset);
+
+                var rows = dataset.Tables[0].Rows;
+
+                foreach (DataRow item in rows)
+                {
+                    var colunas = item.ItemArray;
+
+                    emprestimo = new ConsultaEmprestimoDto
+                    {
+                        Livro = colunas[0].ToString(),
+                        Autor = colunas[1].ToString(),
+                        Editora = colunas[2].ToString(),
+                        Cliente = colunas[3].ToString(),
+                        CPF = colunas[4].ToString(),
+                        DataEmprestimo = DateTime.Parse(colunas[5].ToString()).ToString("dd/MM/yyyy"),
+                        DataDevolucao = DateTime.Parse(colunas[6].ToString()).ToString("dd/MM/yyyy"),
+                        DataDevolucaoEfetiva = colunas[7].ToString(),
+                        StatusLivro = colunas[8].ToString(),
+                        LoginBibliotecario = colunas[9].ToString()
+                    };
+                }
+                adapter = null;
+                dataset = null;
+
+                return emprestimo;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         #endregion
     }
 }

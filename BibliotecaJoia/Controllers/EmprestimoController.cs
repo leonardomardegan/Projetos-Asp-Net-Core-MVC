@@ -43,6 +43,20 @@ namespace BibliotecaJoia.Controllers
             }
         }
 
+        public IActionResult PesquisarEmprestimo(string nomeLivro, string nomeCliente, string dataEmprestimo)
+        {
+            try
+            {
+                DateTime dataEmprestimoFormatada = DateTime.Parse(dataEmprestimo);
+                ConsultaEmprestimoDto result = _emprestimoService.PesquisarEmprestimo(nomeLivro, nomeCliente, dataEmprestimoFormatada);
+                return View(result);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult EfetuarEmprestimo([Bind("Cliente, Livro")] EmprestimoDto emprestimo)
