@@ -590,17 +590,16 @@ namespace BibliotecaJoia.Models.Contexts
                 _connection.Open();
                 transaction = _connection.BeginTransaction();
 
-                var query = SqlManager.GetSql(TSql.EFETUAR_EMPRESTIMO_LIVRO);
+                var query = SqlManager.GetSql(TSql.EFETUAR_DEVOLUCAO_LIVRO);
                 var command = new SqlCommand(query, _connection, transaction);
 
-                command.Parameters.Add("@clienteId", SqlDbType.VarChar).Value = emprestimoLivro.ClienteId;
-                command.Parameters.Add("@livroId", SqlDbType.VarChar).Value = emprestimoLivro.LivroId;
+                command.Parameters.Add("@id", SqlDbType.Int).Value = emprestimoLivro.Id;
                 command.Parameters.Add("@dataDevolucaoEfetiva", SqlDbType.DateTime).Value = emprestimoLivro.DataDevolucaoEfetiva;
 
                 command.ExecuteNonQuery();
 
                 var query2 = SqlManager.GetSql(TSql.ATUALIZAR_STATUS_LIVRO);
-                var command2 = new SqlCommand(query, _connection, transaction);
+                var command2 = new SqlCommand(query2, _connection, transaction);
 
                 command2.Parameters.Add("@id", SqlDbType.VarChar).Value = emprestimoLivro.LivroId;
                 command2.Parameters.Add("@statusLivroId", SqlDbType.Int).Value = StatusLivro.DISPONIVEL.GetHashCode();

@@ -42,7 +42,7 @@ namespace BibliotecaJoia.Models.Repositories
                     break;
 
                 case TSql.LISTAR_CLIENTE:
-                    sql = "select convert(varchar(36), id) 'id', nome, cpf, email, fone, statusClienteId from cliente";
+                    sql = "select convert(varchar(36), id) 'id', nome, cpf, email, fone, statusClienteId from cliente order by nome";
                     break;
 
                 case TSql.PESQUISAR_CLIENTE:
@@ -84,7 +84,7 @@ namespace BibliotecaJoia.Models.Repositories
                     break;
                 #endregion
 
-                #region Consultas SQL para Emprestimo
+                #region Consultas SQL para Emprestimo de Livros
 
                 case TSql.EFETUAR_EMPRESTIMO_LIVRO:
                     sql = "insert into emprestimoLivro (clienteId, usuarioId, livroId, dataEmprestimo, dataDevolucao) " +
@@ -93,7 +93,7 @@ namespace BibliotecaJoia.Models.Repositories
 
                 case TSql.EFETUAR_DEVOLUCAO_LIVRO:
                     sql = "update emprestimoLivro set dataDevolucaoEfetiva = @dataDevolucaoEfetiva " +
-                        "where clienteId = @clienteId and livroId = @livroId";
+                        "where id = @id";
                     break;
 
                 case TSql.ATUALIZAR_STATUS_LIVRO:
@@ -112,7 +112,9 @@ namespace BibliotecaJoia.Models.Repositories
                                 emprestimoLivro el on el.livroId = l.id inner join
                                 cliente c on el.clienteId = c.id inner join
                                 statusLivro sl on l.statusLivroId = sl.id inner join
-                                usuario u on el.usuarioId = u.id";
+                                usuario u on el.usuarioId = u.id
+                            order by
+	                            el.dataEmprestimo desc";
                     break;
 
                 case TSql.PESQUISAR_EMPRESTIMO_LIVROS:
