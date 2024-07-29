@@ -23,9 +23,9 @@ namespace BibliotecaJoia.Models.Repositories
             return _contextData.ConsultarEmprestimos();
         }
 
-        public void EfetuarDevolucao(EmprestimoLivro emprestimoLivro)
+        public void EfetuarDevolucao(int emprestimoId, string livroId)
         {
-            _contextData.EfetuarDevolucaoLivro(emprestimoLivro);
+            _contextData.EfetuarDevolucaoLivro(emprestimoId, livroId);
         }
 
         public void EfetuarEmprestimo(EmprestimoLivro emprestimoLivro)

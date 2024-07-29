@@ -106,7 +106,8 @@ namespace BibliotecaJoia.Models.Repositories
 	                            c.nome 'cliente', c.cpf,
 	                            el.dataEmprestimo, el.dataDevolucao, el.dataDevolucaoEfetiva,
 	                            sl.status 'status do livro',
-	                            u.login 'login bibliotecario'
+	                            u.login 'login bibliotecario',
+                                el.id, convert(varchar(36),l.id) 'livroId'
                             from
                                 livro l inner join
                                 emprestimoLivro el on el.livroId = l.id inner join
@@ -123,7 +124,8 @@ namespace BibliotecaJoia.Models.Repositories
 	                            c.nome 'cliente', c.cpf,
 	                            el.dataEmprestimo, el.dataDevolucao, el.dataDevolucaoEfetiva,
 	                            sl.status 'status do livro',
-	                            u.login 'login bibliotecario'
+	                            u.login 'login bibliotecario',
+                                el.id, convert(varchar(36),l.id) 'livroId'
                             from
                                 livro l inner join
                                 emprestimoLivro el on el.livroId = l.id inner join

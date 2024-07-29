@@ -29,7 +29,7 @@ namespace BibliotecaJoia.Models.Contracts.Contexts
         UsuarioDto EfetuarLogin(UsuarioDto usuario);
 
         void EfetuarEmprestimoLivro(EmprestimoLivro emprestimoLivro);
-        void EfetuarDevolucaoLivro(EmprestimoLivro emprestimoLivro);
+        void EfetuarDevolucaoLivro(int emprestimoId, string livroId);
         List<ConsultaEmprestimoDto> ConsultarEmprestimos();
         ConsultaEmprestimoDto PesquisarEmprestimo(string nomeLivro, string nomeCliente, DateTime dataEmprestimo);
     }

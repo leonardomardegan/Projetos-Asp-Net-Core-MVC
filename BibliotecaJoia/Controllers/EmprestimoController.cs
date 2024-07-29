@@ -88,6 +88,19 @@ namespace BibliotecaJoia.Controllers
             }
         }
 
+        public IActionResult EfetuarDevolucao(int emprestimoId, string livroId)
+        {
+            try
+            {
+                _emprestimoService.EfetuarDevolucao(emprestimoId, livroId);
+                return RedirectToAction("Consulta");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public ClienteDto PesquisarCliente(string nome)
         {
             var cliente = _clienteService.Listar()
