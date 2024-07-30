@@ -52,5 +52,10 @@ namespace BibliotecaJoia.Models.Services
         {
             return _emprestimoLivroRepository.PesquisarEmprestimo(nomeLivro, nomeCliente, dataEmprestimo);
         }
+
+        public void AtualizarStatusEmprestimoLivros()
+        {
+            _emprestimoLivroRepository.AtualizarStatusEmprestimoLivros();
+        }
     }
 }

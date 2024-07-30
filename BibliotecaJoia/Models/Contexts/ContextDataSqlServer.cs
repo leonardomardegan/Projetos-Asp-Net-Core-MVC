@@ -723,6 +723,29 @@ namespace BibliotecaJoia.Models.Contexts
             }
         }
 
+        public void AtualizarStatusEmprestimoLivros()
+        {
+            try
+            {
+                string proc = SqlManager.GetSql(TSql.ATUALIZAR_STATUS_EMPRESTIMOS_LIVROS);
+
+                _connection.Open();
+                var command = new SqlCommand(proc, _connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.ExecuteNonQuery();
+                command = null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (_connection.State == ConnectionState.Open)
+                    _connection.Close();
+            }
+        }
+
         #endregion
     }
 }

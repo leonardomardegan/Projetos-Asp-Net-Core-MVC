@@ -34,6 +34,7 @@ namespace BibliotecaJoia.Controllers
         {
             try
             {
+                _emprestimoService.AtualizarStatusEmprestimoLivros();
                 var emprestimos = _emprestimoService.ConsultarEmprestimos();
                 return View(emprestimos);
             }
