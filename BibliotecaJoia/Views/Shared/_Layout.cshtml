@@ -35,7 +35,7 @@
                         </li>
 
                         @{
-                            var login = Context.Session.GetString("_Login");
+                            string login = Context.Session.GetString("_Login");
 
                             if (login != null)
                             {
